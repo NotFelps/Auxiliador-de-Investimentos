@@ -8,27 +8,41 @@ public class Calculadora {
 
     public void calcula() {
         imprimeEnum();
-        Scanner teclado = new Scanner(System.in);
-        int opcao = teclado.nextInt(); 
-            switch(opcao) {
-                case 0 :
-                    valorFuturo();
-                    break;
+        int aux = 0;
+        while(aux == 0) {
+            System.out.println("\n1 - Verificar rendimento em relacao a uma cotacao futura\n");
+            System.out.println("0 - Encerrar programa\n");
+            System.out.print("Selecione a opcao desejada : ");
+            Scanner teclado = new Scanner(System.in);
+            try {
+                int opcao = teclado.nextInt(); 
+                
+                switch(opcao) {
+                    case 0 :
+                        aux = 1;
+                        break;
+
+                    case 1 :
+                        valorFuturo();
+                        break;
+                }
+            } catch (java.util.NoSuchElementException e) {
+                System.out.println("\nNenhuma opcao correspondida.");
             }
+        }
     }
     
 
     public void imprimeEnum() {
         System.out.println("\n=============================================================================================");
         System.out.println("\n\t\tBem-vindo ao calculador de investimentos do FeWps!");
-        System.out.println("\n0 - Verificar rendimento em relacao a um valor futuro\n");
-        System.out.print("Selecione a opcao desejada : ");
+        System.out.println("\n=============================================================================================");
     }
 
     public void valorFuturo() {
         Scanner teclado = new Scanner(System.in);
         System.out.println("\n------------------------------------------------------");
-        System.out.println("\nCaso escolhido : 0\n");
+        System.out.println("\nCaso escolhido : 1\n");
         System.out.print("Digite a cotacao inicial : ");
         float cotIni = teclado.nextFloat();  //cotacao inicial
         System.out.print("\nDigite o valor investido (em reais) : ");
