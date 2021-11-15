@@ -1,10 +1,7 @@
 import java.text.DecimalFormat;
-import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-
-import javax.sound.sampled.SourceDataLine;
 
 public class Calculadora {
 
@@ -15,16 +12,22 @@ public class Calculadora {
         int aux = 0;
         while(aux == 0) {
             System.out.println("\n1 - Verificar rendimento em relacao a uma cotacao futura\n");
+            System.out.println("2 - Simples multiplicacao de ativos por um preco\n");
             System.out.println("99 - Gerar relatorio\n");
+            System.out.println("-1 - Limpar historico\n");
             System.out.println("0 - Encerrar programa\n");
             System.out.print("Selecione a opcao desejada : ");
             Scanner teclado = new Scanner(System.in);
             try {
-                int opcao = teclado.nextInt(); 
-                
+                int opcao = teclado.nextInt();   
                 switch(opcao) {
                     case 0 :
                         aux = 1;
+                        break;
+                    
+                    case -1 :
+                        resultados.clear();
+                        numAportes = 0;
                         break;
 
                     case 99:
@@ -33,6 +36,10 @@ public class Calculadora {
 
                     case 1 :
                         valorFuturo();
+                        break;
+
+                    case 2 :
+                        mult();
                         break;
                 }
             } catch (java.util.NoSuchElementException e) {
@@ -46,6 +53,25 @@ public class Calculadora {
         System.out.println("\n=============================================================================================");
         System.out.println("\n\t\tBem-vindo ao calculador de investimentos do FeWps!");
         System.out.println("\n=============================================================================================");
+    }
+
+    public void mult() {
+        int aux = 0;
+        while(aux==0) {
+            Scanner teclado = new Scanner(System.in);
+            System.out.println("\n------------------------------------------------------");
+            System.out.println("\nCaso escolhido : 2\n");
+            System.out.print("Digite a cotacao do ativo : ");
+            float cotacao = teclado.nextFloat();
+            System.out.print("Digite a quantidade de ativos desse tipo : ");
+            float quantidade = teclado.nextFloat();
+            float total = cotacao*quantidade;
+            System.out.println("Total : R$ "+total);
+            teclado.nextLine();
+            System.out.print("Deseja realizar outra multiplicacao?(sim/nao) : ");
+            String resp = teclado.nextLine();
+            if(resp.equals("nao")) aux = 1;
+        }
     }
 
     public void relatorio() {
